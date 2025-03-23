@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>录音网页</title>
+    <style>
+        #countdown {
+            font-size: 3em;
+            margin: 20px auto;
+            text-align: center;
+        }
+        #startRecording {
+            display: none;
+            margin: 20px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    
+    五、朗读短文(满分5分)题干你有60秒时间熟悉屏幕上的短文，在听到“开始录音”的提示音后，请将短文朗读一遍.时间为90秒。
+   <br>Will the importance of English last? As China continues to grow, many peopie think thaChinese will become as common as English. More and more schools in Europe are teaching Chinesas a foreign language, together with some other languages.<br>
+     However, most people still think thaEnglish will be used most around the world, at least for the next twenty or thirty years. So who ownEnglish? The answer is everyone who speaks it. Even though we speak different kinds of English, weare all part of an international club. We all own English.
+   <br>你有60秒时间熟悉屏幕上的短文，90秒朗读时间
+   <div>听力原文</div>
+   <audio controls>
+    <source src="./1-5.MP3" type="audio/mpeg">
+      </audio>
+    <div id="startRecording">
+        <button id="recordButton">开始录音</button>
+        <button id="stopButton" disabled>停止录音</button>
+        <a id="downloadLink" style="display: none;">下载录音</a>
+    </div>
+    <div id="countdown" style="font-size: small;">60</div>
+
+    <script>
+        let countdown = 57;
+        let countdownElement = document.getElementById('countdown');
+        let startRecordingDiv = document.getElementById('startRecording');
+        let recordButton = document.getElementById('recordButton');
+        let stopButton = document.getElementById('stopButton');
+        let downloadLink = document.getElementById('downloadLink');
+        let mediaRecorder;
+        let audioChunks = [];
+
+        function startCountdown() {
+            const countdownInterval = setInterval(() => {
+                countdown--;
+                countdownElement.textContent = countdown;
+
+                if (countdown === 0) {
+                    clearInterval(countdownInterval);
+                    countdownElement.textContent = "3";
+                    setTimeout(() => {
+                        countdownElement.textContent = "2";
+                        setTimeout(() => {
+                            countdownElement.textContent = "1";
+                            setTimeout(() => {
+                                countdownElement.style.display = 'none';
+                                startRecordingDiv.style.display = 'block';
+                                requestMicrophonePermission();
+                            }, 1000);
+                        }, 1000);
+                    }, 1000);
+                }
+            }, 1000);
+        }
+
+        function requestMicrophonePermission() {
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(stream => {
+                    mediaRecorder = new MediaRecorder(stream);
+                    mediaRecorder.ondataavailable = event => {
+                        audioChunks.push(event.data);
+                    };
+                    mediaRecorder.onstop = () => {
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                        const audioUrl = URL.createObjectURL(audioBlob);
+                        const audio = new Audio(audioUrl);
+                        downloadLink.href = audioUrl;
+                        downloadLink.download = 'recording.wav';
+                        downloadLink.textContent = '下载录音';
+                        downloadLink.style.display = 'block';
+                        audioChunks = [];
+                    };
+
+                    recordButton.onclick = () => {
+                        recordButton.disabled = true;
+                        stopButton.disabled = false;
+                        mediaRecorder.start();
+                    };
+
+                    stopButton.onclick = () => {
+                        recordButton.disabled = false;
+                        stopButton.disabled = true;
+                        mediaRecorder.stop();
+                    };
+                })
+                .catch(err => {
+                    console.error('无法获取麦克风权限:', err);
+                });
+        }
+
+        // 开始倒计时
+        startCountdown();
+
+        // 录音最长90秒
+        let recordTimeout;
+        recordButton.onclick = () => {
+            mediaRecorder.start();
+            recordTimeout = setTimeout(() => {
+                stopButton.click();
+            }, 90000);
+        };
+
+        stopButton.onclick = () => {
+            clearTimeout(recordTimeout);
+            mediaRecorder.stop();
+        };
+    </script>
+</body>
+</html>
