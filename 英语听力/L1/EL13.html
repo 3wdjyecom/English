@@ -14,91 +14,74 @@
     <h1>九年级英语听力测试 - 听短对话回答问题</h1>
     <button type="button" onclick="playNextAudio()">开始播放</button>
     <form id="quiz-form">
-        <audio id="audio-q1" src="../1/1.2.1.mp3" onended="handleAudioEnded()"></audio>
+        <audio id="audio-q1" src="../1/1.3.1.mp3" onended="handleAudioEnded()"></audio>
         <div class="show-button">
             <button type="button" onclick="toggleOriginalText('original-text-q1')">显示原文</button>
         </div>
         <div class="original-text" id="original-text-q1">
             原文:
-            M: Lily, you are from Shanghai, right?<br>
-            W: No. Tianjin is my home town, it's a beautiful old city.<br>
-            M: Where is it?<br>
-            W: It's near Beijing, on the coast of the Bohai Sea<br>
-            M: What's the weather like there?<br>
-            W: It's very pleasant.
+            M: Hi, Lingling. What are you up to?<br>
+            W: Hi, Daming. I have just made a model spaceship for our school project.<br>
+            M: Have you heard the latest news on TV? $cientists have sent a spaceship to Mars
+            W: Has it arived yet?<br>
+            M: Yes, it has arrived already.<br>
+            W: So have they discovered life on Mars?<br>
+            M: No, they haven't yet. No one has been to Mars. Lots of scientists are working hard into send astronauts/to Mars one day.<br>
+            W: That's interesting. (The bell rings.) It's time for the art lesson.<br>
+            M: Let's’ go to the art classroom.<br>
         </div>
         <!-- 第一题 -->
         <div>
-            <p class="question-title" id="q1">1.Which city is Lily's home town?</p>
+            <p class="question-title" id="q1">1. What is the model spaceship for?</p>
             <input type="radio" id="q1a" name="q1" value="A">
-            <label for="q1a">A. <span class="option-text">Beijing.</span></label><br>
+            <label for="q1a">A. <span class="option-text">The school project.</span></label><br>
             <input type="radio" id="q1b" name="q1" value="B">
-            <label for="q1b">B. <span class="option-text">Tianjin.</span></label><br>
+            <label for="q1b">B. <span class="option-text">The talent show.</span></label><br>
             <input type="radio" id="q1c" name="q1" value="C">
-            <label for="q1c">C. <span class="option-text">Shanghai.</span></label><br>
+            <label for="q1c">C. <span class="option-text">The birthday gift</span></label><br>
         </div>
         <hr>
 
-        <audio id="audio-q2" src="../1/1.2.2.mp3" onended="handleAudioEnded()"></audio>
-        <div class="show-button">
-        </div>
-        <div class="original-text" id="original-text-q2">
-            原文:
-            W: Your bag is so cool, where did you get it?<br>
-            M: Thanks, I went to Liaoyang with my sister and bought it there on National Day.<br>
-            W: Really? Could you tell me something?<br>
-            M: Sure. It is a beautiful city and it doesn't get too cold in winter. The people were very friendly.<br>
-            W: Shall we go there together next weekend?<br>
-            M: OK! I can be your guide.
-        </div>
+
+    
         <!-- 第二题 -->
         <div>
-            <p class="question-title" id="q2">2. What is the weather like there?</p>
+            <p class="question-title" id="q2">2. Where does Daming hear the latest news?</p>
             <input type="radio" id="q2a" name="q2" value="A">
-            <label for="q2a">A. <span class="option-text">Fine.</span></label><br>
+            <label for="q2a">A. <span class="option-text">On the phone.</span></label><br>
             <input type="radio" id="q2b" name="q2" value="B">
-            <label for="q2b">B. <span class="option-text">Cloudy</span></label><br>
+            <label for="q2b">B. <span class="option-text">On the radio.</span></label><br>
             <input type="radio" id="q2c" name="q2" value="C">
-            <label for="q2c">C. <span class="option-text">Hot.</span></label><br>
+            <label for="q2c">C. <span class="option-text">On TV.</span></label><br>
         </div>
         <hr>
 
         <!-- 第三题 -->
         <div>
-            <p class="question-title" id="q3">3. Who did the man go to Liaoyang with?</p>
+            <p class="question-title" id="q3">3.What has the scientists done?</p>
             <input type="radio" id="q3a" name="q3" value="A">
-            <label for="q3a">A. <span class="option-text">His friend.</span></label><br>
+            <label for="q3a">A. <span class="option-text">Been to Mars.</span></label><br>
             <input type="radio" id="q3b" name="q3" value="B">
-            <label for="q3b">B. <span class="option-text">His sister.</span></label><br>
+            <label for="q3b">B. <span class="option-text">Diseovered life on Mars</span></label><br>
             <input type="radio" id="q3c" name="q3" value="C">
-            <label for="q3c">C. <span class="option-text">His brother.</span></label><br>
+            <label for="q3c">C. <span class="option-text">Sent a spaceship to Mars.</span></label><br>
         </div>
         <div class="show-button">
         </div>
 
         
         <hr>
-        <button type="button" onclick="toggleOriginalText('original-text-q3')">显示原文</button>
-        <div class="original-text" id="original-text-q3">
-            原文:
-            W: Your bag is so cool, where did you get it?<br>
-            M: Thanks, I went to Liaoyang with my sister and bought it there on National Day.<br>
-            W: Really? Could you tell me something?<br>
-            M: Sure. It is a beautiful city and it doesn't get too cold in winter. The people were very friendly.<br>
-            W: Shall we go there together next weekend?<br>
-            M: OK! I can be your guide.
-        </div>
         <!-- 第四题 -->
         
         
         <div>
-            <p class="question-title" id="q4">4. When did the man go to Liaoyang?</p>
+            <p class="question-title" id="q4">4. Who will the scientists send to Mars?</p>
             <input type="radio" id="q4a" name="q4" value="A">
-            <label for="q4a">A. <span class="option-text">On National Day.</span></label><br>
+            <label for="q4a">A. <span class="option-text">Astronauts.</span></label><br>
             <input type="radio" id="q4b" name="q4" value="B">
-            <label for="q4b">B. <span class="option-text">On New Year's Day.</span></label><br>
+            <label for="q4b">B. <span class="option-text">Teachers.</span></label><br>
             <input type="radio" id="q4c" name="q4" value="C">
-            <label for="q4c">C. <span class="option-text">On May day.</span></label><br>
+            <label for="q4c">C. <span class="option-text">Muiscians.</span></label><br>
         </div>
         <div class="show-button">
            
@@ -108,13 +91,13 @@
 
         <!-- 第五题 -->
         <div>
-            <p class="question-title" id="q5">5. What are the people in Liaoyang like?</p>
+            <p class="question-title" id="q5">5.What will Daming and Betty do next?</p>
             <input type="radio" id="q5a" name="q5" value="A">
-            <label for="q5a">A. <span class="option-text">Polite.</span></label><br>
+            <label for="q5a">A. <span class="option-text">Go home.</span></label><br>
             <input type="radio" id="q5b" name="q5" value="B">
-            <label for="q5b">B. <span class="option-text">Friendly.</span></label><br>
+            <label for="q5b">B. <span class="option-text">Have classes</span></label><br>
             <input type="radio" id="q5c" name="q5" value="C">
-            <label for="q5c">C. <span class="option-text">Humorous.</span></label><br>
+            <label for="q5c">C. <span class="option-text">Watch TV.</span></label><br>
         </div>
         <div class="show-button">
             
@@ -123,7 +106,7 @@
         
          <!-- 提交按钮 -->
          <button type="button" onclick="checkAnswers()">提交答案</button><br>
-         <a href="./EL13.html">下一题</a>
+         <a href="./EL14.html">下一题</a>
     </form>
 
     <!-- 正确答案显示 -->
@@ -132,11 +115,11 @@
     <script>
         let correctAnswers = []; // 存储正确答案对应的选项值
         const originalCorrectTexts = [
-            "Tianjin.",
-            "Fine.",
-            "His sister.",
-            "On National Day.",
-            "Friendly."
+            "The school project.",
+            "On TV.",
+            "Sent a spaceship to Mars.",
+            "Astronauts.",
+            "Have classes"
         ];
 
         let audioPlayedCount = 0; // 用于记录当前音频播放次数
