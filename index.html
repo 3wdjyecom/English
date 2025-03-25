@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             height: 100vh;
-            background: url('./bg.jpg') no-repeat center center/cover; /* 设置背景图片 */
+            background: url('./bg-desktop.jpg') no-repeat center center/cover; /* 默认为PC背景图片 */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -28,14 +28,24 @@
             color: black;
         }
     </style>
+    <script>
+        function detectDeviceAndChangeBackground() {
+            if (/Mobi|Android/i.test(navigator.userAgent)) {
+                document.body.style.backgroundImage = 'url("./bgph.jpg")'; // 手机背景图片
+            } else {
+                document.body.style.backgroundImage = 'url("./bg.jpg")'; // PC背景图片
+            }
+        }
+
+        // 页面加载完成后执行检测并更改背景
+        window.onload = detectDeviceAndChangeBackground;
+    </script>
 </head>
 <body>
     <div class="container">
         <div>索引目录</div>
         <a href="./英语听力/L1/EL11.html">听力一</a>
         <a href="./英语听力/L2/EL21.html">听力二</a>
-        <a href="https://github.com/3wdjyecom/English">页面开源</a>
-                                                    
     </div>
 </body>
 </html>
