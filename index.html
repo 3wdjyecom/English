@@ -9,14 +9,14 @@
             margin: 0;
             padding: 0;
             height: 100vh;
-            background: url('./bg-desktop.jpg') no-repeat center center/cover; /* 默认为PC背景图片 */
+            background: no-repeat center center/cover; /* 默认背景图片 */
             display: flex;
             justify-content: center;
             align-items: center;
         }
         .container {
-            background-color: rgba(255, 255, 255, 0.3); /* 设置背景颜色为半透明白色 */
-            backdrop-filter: blur(5px); /* 毛玻璃效果 */
+            background-color: rgba(255, 255, 255, 0.5); /* 设置背景颜色为更高透明度的半透明白色 */
+            backdrop-filter: blur(1px); /* 毛玻璃效果 */
             padding: 20px;
             border-radius: 10px;
             text-align: center; /* 内容居中 */
@@ -29,16 +29,26 @@
         }
     </style>
     <script>
-        function detectDeviceAndChangeBackground() {
-            if (/Mobi|Android/i.test(navigator.userAgent)) {
-                document.body.style.backgroundImage = 'url("./bgph.jpg")'; // 手机背景图片
-            } else {
-                document.body.style.backgroundImage = 'url("./bg.jpg")'; // PC背景图片
-            }
+        function getRandomBackgroundImage(isMobile) {
+            // 定义不同设备的背景图片列表
+            const mobileImages = ['./bgmo/3.jpg', './bgmo/1.jpg', './bgmo/2.jpg', './bgmo/4.jpg', './bgmo/5.jpg',]; // 手机端背景图片列表
+            const desktopImages = ['./bg/1.jpg', './bg/2.jpg', './bg/3.jpg', './bg/4.jpg', './bg/5.jpg', './bg/6.jpg', './bg/7.jpg', './bg/8.jpg',]; // PC端背景图片列表
+
+            // 选择对应设备的图片列表
+            const images = isMobile ? mobileImages : desktopImages;
+
+            // 随机选择一张图片
+            const randomImage = images[Math.floor(Math.random() * images.length)];
+            document.body.style.backgroundImage = 'url("' + randomImage + '")';
+        }
+
+        function detectDeviceAndSetRandomBackground() {
+            const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+            getRandomBackgroundImage(isMobile);
         }
 
         // 页面加载完成后执行检测并更改背景
-        window.onload = detectDeviceAndChangeBackground;
+        window.onload = detectDeviceAndSetRandomBackground;
     </script>
 </head>
 <body>
