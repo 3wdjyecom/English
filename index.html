@@ -5,6 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>听力</title>
     <style>
+         .button {
+          background-color:red; /* 绿色 */
+          border: none;
+          color: white;
+          padding: 15px 64px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+          width: 278px;
+          filter: blur(0px);
+        }
+        
+        .button2 {
+            
+          border: none;
+          color: white;
+          padding: 15px 64px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+          width: 278px;
+          filter: blur(0px);
+          background-color: yellowgreen;} /* 蓝色 */
+          .button3 {
+            
+            border: none;
+            color: white;
+            padding: 15px 64px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            width: 278px;
+            filter: blur(0px);
+            background-color: blueviolet;} /* 蓝色 */
         body {
             margin: 0;
             padding: 0;
@@ -14,13 +57,21 @@
             justify-content: center;
             align-items: center;
         }
-        .container {
-            background-color: rgba(255, 255, 255, 0.5); /* 设置背景颜色为更高透明度的半透明白色 */
-            backdrop-filter: blur(1px); /* 毛玻璃效果 */
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center; /* 内容居中 */
-        }
+        .butt {
+  position: absolute;
+  height: 375px;
+  width: 275px;
+  left: 50%;
+  top: 50%;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2); 
+  border-radius: 20px;
+  padding: 35px;
+  transform: translate(-50% , -50%);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
         a {
             display: block;
             margin: 10px 0;
@@ -52,10 +103,13 @@
     </script>
 </head>
 <body>
-    <div class="container">
-        <div>索引目录</div>
-        <a href="./英语听力/L1/EL11.html">听力一</a>
-        <a href="./英语听力/L2/EL21.html">听力二</a>
-    </div>
+    
+    <div class="butt">
+    <div style="text-align: center;font-size: 20px;">索引目录</div>
+        <a href="./英语听力/L1/EL11.html"><button class="button"  >听力一</button><br></a>
+        <a href="./英语听力/L2/EL21.html"><button class="button2" >听力二</button><br></a>
+        <a href="https://github.com/3wdjyecom/English"><button class="button3">页面开源</button><br></a>
+        <div style="text-align:center;margin-top:20px;">powered by 3wdjyecom</div>
+      </div>
 </body>
 </html>
