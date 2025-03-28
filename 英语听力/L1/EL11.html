@@ -90,89 +90,13 @@
         </div>
         <hr>
 
-        
         <!-- 提交按钮 -->
-        <button type="button" onclick="checkAnswers()">提交答案</button><br>
+        <button type="button" onclick="saveUserAnswers()">保存答案</button><br>
         <a href="./EL12.html">下一题</a>
     </form>
 
-    <!-- 正确答案显示 -->
-    <div id="result"></div>
-
     <script>
-        let correctAnswers = []; // 存储正确答案对应的选项值
-        const originalCorrectTexts = [
-            "Look at each other.",
-            "Chongqing.",
-            "Happy.",
-            "On the east coast of America.",
-            "At the age of 7."
-        ];
-
-        let audioPlayedCount = 0; // 用于记录当前音频播放次数
-        let currentAudioIndex = 0; // 当前播放的音频索引
-
-        window.onload = function() {
-            randomizeOptionTexts();
-        };
-
-        function randomizeOptionTexts() {
-            const questions = document.querySelectorAll('#quiz-form > div');
-            correctAnswers = []; // 重置正确答案数组
-            
-            questions.forEach((question, index) => {
-                const options = question.querySelectorAll('input[type="radio"]');
-                const labels = question.querySelectorAll('label');
-                const originalTexts = Array.from(labels).map(label => 
-                    label.querySelector('.option-text').textContent
-                );
-    
-                const shuffledTexts = [...originalTexts];
-                for (let i = shuffledTexts.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [shuffledTexts[i], shuffledTexts[j]] = [shuffledTexts[j], shuffledTexts[i]];
-                }
-    
-                options.forEach((option, i) => {
-                    const label = labels[i];
-                    label.querySelector('.option-text').textContent = shuffledTexts[i];
-                    
-                    if(shuffledTexts[i] === originalCorrectTexts[index]) {
-                        correctAnswers[index] = option.value;
-                    }
-                });
-            });
-        }
-
-        function handleAudioEnded() {
-            if (audioPlayedCount < 1) {
-                // 同一音频播放两次（第一次播放后停顿一秒再播放第二次）
-                setTimeout(() => {
-                    playNextAudio();
-                }, 1000);
-            } else {
-                // 在第二次播放结束后停顿三秒再播放下一个音频
-                setTimeout(() => {
-                    audioPlayedCount = 0; // 重置播放次数
-                    currentAudioIndex++; // 切换到下一个音频
-                    if (currentAudioIndex < 5) {
-                        playNextAudio();
-                    } else {
-                        alert('所有音频已播放完毕，请开始答题。');
-                    }
-                }, 3000);
-            }
-        }
-
-        function playNextAudio() {
-            const audio = document.getElementById(`audio-q${currentAudioIndex + 1}`);
-            if (audio) {
-                audio.play();
-                audioPlayedCount++;
-            }
-        }
-
-        function checkAnswers() {
+        function saveUserAnswers() {
             let userAnswers = [
                 document.querySelector('input[name="q1"]:checked')?.value || "",
                 document.querySelector('input[name="q2"]:checked')?.value || "",
@@ -180,23 +104,27 @@
                 document.querySelector('input[name="q4"]:checked')?.value || "",
                 document.querySelector('input[name="q5"]:checked')?.value || ""
             ];
-            
-            let score = 0;
-            let resultHTML = "";
 
-            userAnswers.forEach((answer, index) => {
-                if(answer === correctAnswers[index]) {
-                    score++;
-                    resultHTML += `第${index+1}题：✅ 正确<br>`;
-                } else {
-                    resultHTML += `第${index+1}题：❌ 错误（正确答案：${correctAnswers[index]}）<br>`;
-                }
-            });
+            // 设置cookie存储用户答案
+            setCookie("userAnswers", JSON.stringify(userAnswers), 1);
 
-            document.getElementById("result").innerHTML = `
-                你的得分：${score} / ${correctAnswers.length}<br>
-                ${resultHTML}
-            `;
+            alert('答案已保存，请前往下一题。');
+        }
+
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days*24*60*60*1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        }
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
         }
     </script>
 </body>
